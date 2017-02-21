@@ -71,4 +71,4 @@ theme: next
 deploy:
   type: git
   repo: https://github.com/ic-/ic-.github.io
-  branch: dev
+  branch: master
