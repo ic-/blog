@@ -9,7 +9,6 @@ tags:
     - promise
     - co
 ---
----
 * Generator
 * 传统异步 代码各种嵌套
 * promise 只是改变了写法
@@ -31,6 +30,7 @@ console.log(data.toString())
 //
 })
 ```
+<!--more-->
 
 * Generator
 * ES6 中协程的体现 函数可以交出执行权（即暂停执行，又可以恢复执行）

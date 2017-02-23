@@ -55,3 +55,10 @@ commit: false
 - 查看别名：
 - cat .git/config
 - vim .git/config //[alias] 修改
+
+### 文件忘记忽略上传远程服务器问题
+解决：编辑 .gitignore 文件添加忽略
+git rm -r --cached .
+git add .
+git commit -m 'repush'
+git push
