@@ -30,6 +30,11 @@ text-overflow: ellipsis;
 -webkit-line-clamp: 2;
 -webkit-box-orient: vertical;
 ```
+### -webkit-font-smoothing
+Windows系统上-webkit-font-smoothing属性不造成区别。
+iOS上，修改-webkit-font-smoothing属性，结果是：
+-webkit-font-smoothing: none: 无抗锯齿
+-webkit-font-smoothing: antialiased | subpixel-antialiased | default: 灰度平滑
 ### 单行文本溢出省略号
 ```css
 overflow: hidden;

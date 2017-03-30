@@ -2,12 +2,10 @@
 title: gen-thunk-promise-co
 date: 2017-02-20 20:37:12
 tags: 
-    - ES6
-    - JS
-    - Generator
-    - thunk 
+    - js
     - promise
-    - co
+commit: false
+categories: js
 ---
 * Generator
 * 传统异步 代码各种嵌套

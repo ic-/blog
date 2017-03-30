@@ -3,9 +3,9 @@ title: ES6
 date: 2017-02-20 20:22:07
 tags: 
     - ES6
-    - JS
+    - js
 commit: false
-categories: JS 
+categories: js
 ---
 ## ES6
 

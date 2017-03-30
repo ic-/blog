@@ -2,7 +2,7 @@
 title: browser
 date: 2017-02-17 10:25:32
 tags: 
-    - JS 
+    - js 
     - browser
 ccomments: false
 ---
