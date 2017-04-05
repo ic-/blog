@@ -8,6 +8,7 @@ commit: false
 categories: js
 ---
 ### 字符串相关内容
+
 #### 查找方法
 - charAt(n) 
     - n > len  //空字符串
@@ -15,6 +16,7 @@ categories: js
     - n > len  //NaN
 - fromCharAt(unicode1, unicode2, ...) //跟进字符串编码创建字符串
     - 返回字符串
+    
 #### 位置方法
 - indexOf()
 - lastIndexOf() 
@@ -22,6 +24,7 @@ categories: js
 - 找到返回位置
 - 未找到返回 -1
 <!--more-->
+
 #### 匹配方法
 - match
     - 一个或者多个匹配
@@ -42,12 +45,13 @@ categories: js
     - 找到返回位置
     - 未找到返回 -1
 - replace
-    - $$ //$
-    - $& //整个模式的子字符串  就是匹配的内容
-    - $' //匹配字符串之前的字符串
-    - $` //匹配字符串之后的字符串
-    - $0-9  //匹配第n个捕获组
-    - function(arguments){}
+    + $$ //$
+    + $& //整个模式的子字符串  就是匹配的内容
+    + $' //匹配字符串之前的字符串
+    + $` //匹配字符串之后的字符串
+    + $0-9  //匹配第n个捕获组
+    + function(arguments){}
+    
 ```js
 var str = 'aabbccddee';
 str.replace(/(bb)(cc)/g, function(){

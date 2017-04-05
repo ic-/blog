@@ -6,160 +6,85 @@ tags:
 commit: false 
 categories: http 
 ---
+### TCP/IP 协议族
+- 应用层
+    - 决定了向用户提供应用服务时通信的活动
+    - FTP: 文件传输
+    - DNS: 域名系统
+    - HTTP: http协议请求 通信
+- 传输层
+    - 提供2台计算机直接的数据传输
+    - TCP: 传输控制协议
+    - UDP: 用户数据协议
+- 网络层
+    - 处理网络上流动的数据包
+    - 在众多的选项内选择一条传输路线
+    - IP协议：负责传输 是无状态的 
+    - 传输成功与否在TCP协议中确认
+- 链路层
+    - 处理网络的硬件部分
+    - 网卡 光纤 
+<!--more-->
 
-### DNS
-
+#### TCP协议
+- 传输协议 基于字节流的传输通信协议
+- 应用层之下 IP层之上
+    - 应用层 》TCP 》IP
+- 建立一个TCP链接 客户端和服务端要三次握手
+    - SYN: synchronize ACK: acknowledgement
+    - 1. client -> SYN标志的数据包 -> server
+    - 2. server -> SYN/ACK确认信息 -> client
+    - 3. client -> ACK的数据包 -> server
+    
+#### ip协议
+- IP协议规定了数据传输时的基本单元和格式
+    - 传输包装方式和大小
+- IP协议还定义了数据包的递交办法和路由选择
+    - 传输方法和路线
+        
+### DNS 应用层
 * 浏览器中的URL通过DNS解析成IP
 * DNS 服务器是集群是分层级的，没有任何一个单一的 DNS 服务器是中包含所有服务器
 * 如果一个服务器没着到，会沿着节点一层一层往上找
 * 每一个请求都是独立的无状态的
 
-### URL
+### HTTP 应用层
+#### HTTP 通信
+1. 客户端在应用层（HTTP）访问URL
+2. 在传输层（TCP）把应用层的接受到的数据（HTTP报文请求），进行分割 并且打上标记（SYN ACK）转发给网络层
+3. 网络层（IP）增加作为通信的目的地的MAC地址后发给链路层
 
-* 由三部分组成
-* HTTP 协议
-* www
+#### HTTP 请求 和响应
+##### request请求报文
+```text
+方法 URL/URI 协议版本
+GET /search.html HTTP/1.1
+```
+##### 响应报文
+```text
+协议版本 状态码 描述
+HTTP/1.1 200 ok
+```
+##### 请求响应头
+- 通用头域 General
+- 请求头 Request Headers
+- 响应头 Response Headers
+- 请求参数 Request PayLoad/Request body
+- 返回结果
 
-<!--more-->
-
-### 媒体类型（MIME type）
-
-* 因特网上有数千种不同的数据类型，HTTP 仔细地给每种要通过 Web 传输的对
-象都打上了名为 MIME 类型
-* content-type =
-* text\/html
-* text\/plain
-* image\/jpg
-
-### URI 为统一资源标识符
-
-* 每个 Web 服务器资源都有一个名字URI
-
-* url 统一资源定位符: [https:\/\/static.jdpay.com\/m-wallet\/v0.4.0\/img\/favicon.ico](https://static.jdpay.com/m-wallet/v0.4.0/img/favicon.ico)
-
-* 协议 \(scheme\) https:\/\/ \|\| https:\/\/
-* 网址 static.jdpay.com
-* 资源路径 \/m-wallet\/v0.4.0\/img\/favicon.ico
-
-* urn 统一资源名 与资源地无关
-
-* 如： 不论因特网标准文档 RFC 2141 位于何处
-* 都可以用 URN 来命名它： urn:ietf:rfc:2141
-
-### 事物
-
-* 一个http事物由一条客户端发起的请求命令和一个服务端返回响应结果构成
-* 这种通信是通过HTTP报文的格式数据进行的
-
-### 方法
-
+{% asset_img headers.png request header %}
+        
+##### 请求 Method
 * GET 从服务器向客户端发送命名资源
-
 * POST 将客户端数据发送到一个服务器网关应用程序
-
 * OPTIONS 查询针对请求URI指定的资源支持的方法。
-
 * DELETE 从服务器中删除命名资源
 * PUT 将来自客户端的数据存储到一个命名的服务器资源中去
 * HEAD 仅发送命名资源响应中的 HTTP 首部
 * CONNECT 方法要求在代理服务器通信时建立隧道，实现隧道协议进行TCP通信。
 * TRACE 方法是让WEB服务器端将之前的请求通信环回给客户端的方法。
 
-### 状态码
-
-* 1XX 信息状态码 接受的请求正在处理
-
-* 2XX 成功状态吗 请求正常处理完毕
-
-* 3XX 重定向状态码 需要进行附加操作以完成请求
-
-* 4XX 客户端错误状态码 服务器无法处理请求
-* 5XX 服务器错误状态码 服务器处理请求出错
-
-### 报文
-
-* 起始行 HTTP\/1.1 200 OK
-
-* 首部字段
-
-* Server: nginx
-* Connection: keep-alive
-* ...
-
-* 主体
-
-* 发送的数据
-* 返回的数据
-### 链接
-
-* TCP\/IP 传输协议
-* 无差错的数据传输
-* 按序传输
-* 未分段的数据流
-* 版本
-* HTTP\/0.9 有缺陷不支持多媒体的 MIME 类型，各种 HTTP 首部
-* HTTP\/1.0 广泛使用
-* HTTP\/1.1 当前使用
-* HTTP\/2.0\| HTTP-NG 优化性能
-
-* ip 网络层 -&gt; TCP 传输层 -&gt; HTTP应用层
-* 一次url请求
-
-* 浏览器从url中解析出服务器的主机名称
-* 浏览器将服务器的主机名称转换成服务器ip
-
-* 通过 DNS
-
-* 解析出端口
-
-* 浏览器建立与 web 服务器的 TCP 链接
-
-* 浏览器向服务器发送一条 http 请求报文
-
-* 服务器返回给浏览器一条 HTTP 响应报文
-* 关闭链接，浏览器显示文档
-
-### WEB 的结构组件
-
-```
-- 代理
-- 位于客户端和服务端中间
-- 对请求和响应进行过滤等操作
-- 缓存
-- HTTP 仓库 使常用副本保存在离客户端更近的地方
-- 网关
-- 链接其他服务器的特殊 WEB 服务器
-- HTTP <-(http)-> HTTP/FTP 网关 <-(FTP)-> FTP 服务器
-- 隧道
-- 对 HTTP 通信报文进行盲转发的特殊代理。
-- Agent 代理
-- 发起自动 HTTP 请求的半智能 Web 客户端。
-```
-
-### HTTP REQUEST
-
-* 由3部分组成： 请求行 请求报头 请求正文
-
-* 请求行 Method Request-URI HTTP-Version
-
-* POST /loan/record HTTP/1.1
-* Method : GET POST HEAD PUT DELETE TRACE OPTIONS
-* HEAD 请求获取由Request-URI所标识的资源的响应消息报头
-* RTACE 请求服务器回送收到的请求信息，主要用于测试或诊断
-* OPTIONS 请求查询服务器的性能，或者查询与资源相关的选项和需求
-
-* 请求报头
-
-* 请求正文
-
-### HTTP RESPONSE
-
-* 由3部分组成：状态行 消息报头 响应正文
-
-* 请求行 HTTP-Version Status-code 描述
-* HTTP/1.1 200 ok
-* Status-code
-
+##### 状态码
 * 1XX 信息状态码 接受的请求正在处理
 * 2XX 成功状态吗 请求正常处理完毕
 * 3XX 重定向状态码 需要进行附加操作以完成请求
@@ -167,7 +92,6 @@ categories: http
 * 5XX 服务器错误状态码 服务器处理请求出错
 
 * 200 OK：请求正常处理。
-
 * 204 No Content：请求正常处理，但没有资源可返回。
 * 206 Partial Content： 客户端进行了范围请求，服务器成功执行这部分GET请求。
 * 301 Moved Permanently： 永久性重定向，表明该资源已被分配了新的URI。
@@ -181,36 +105,44 @@ categories: http
 * 500 Internal Server Error：服务器端执行请求时发生内部错误。多为服务器端程序出现Bug。
 * 503 Service Unavailable：服务器处于超负载或正在停机维护，暂时无法处理请求。
 
-* 消息报头 请求头
+### WEB 的结构组件
+- 代理
+- 位于客户端和服务端中间
+- 对请求和响应进行过滤等操作
+- 缓存
+- HTTP 仓库 使常用副本保存在离客户端更近的地方
+- 网关
+- 链接其他服务器的特殊 WEB 服务器
+- HTTP <-(http)-> HTTP/FTP 网关 <-(FTP)-> FTP 服务器
+- 隧道
+- 对 HTTP 通信报文进行盲转发的特殊代理。
+- Agent 代理
+- 发起自动 HTTP 请求的半智能 Web 客户端。
 
-{% asset_img img1.png request header %}
+### 一次url请求发生了什么
+1. DNS解析
+    1. 先缓存查找 -> 有返回
+    2. 本地服务器 -> 根域名服务器 -> 有返回
+    3. 根域名服务器 -> 顶级域名服务器 ->有返回
+    4. 顶级域名服务器 -> 网址域名服务器 ->有返回
+    5. 拿到ip 缓存ip
+2. 拿到ip和服务器 建立TCP链接 
+    - 三次握手 加入标识/识别标识 
+    - 数据传输走IP协议
+3. 浏览器向服务器发送一条 http 请求报文
+    - 请求行 请求头 请求正文
+4. 服务器返回给浏览器一条 HTTP 响应报文 
+    - 状态码 响应头 响应报文
+    - 状态码
+5. 浏览器接收HTML, CSS, JS 渲染页面
+    - 渲染引擎
+        - HTML构建DOM
+        - CSS计算样式构建渲染
+        - 浏览器开始渲染
+            - 重排和重绘
+    - js引擎
+        - 解析执行js 
+        - 会阻塞 挂起渲染
+    - 浏览器下载资源不会阻塞
 
-* 通用header
-
-* Content-Type : 请求体/响应体的类型，如：text/plain、application/json
-* Accept : 说明接收的类型，可以多个值，用,\(半角逗号\)分开
-* Content-Length : 请求体/响应体的长度，单位字节
-* Content-Encoding : 请求体/响应体的编码格式，如gzip, deflate
-* Accept-Encoding : 告知对方我接受的Content-Encoding
-* ETag : 当前资源的标识，和Last-modified, If-None-Match, if-Modified-since 配合，用于控制缓存
-* Cache-Control : 取值一般维 no-cache 或者 max-age=xx, xx为整数，表示该资源缓存有效期（秒）
-* Connection : keep-alive 服务端和客户端的TCP不会关闭!
-
-* 请求Header
-
-* Authorization: 用于设置身份认证信息
-* User-Agent : 用户标识如 OS浏览器的类型和版本
-* If-Modified-since : 值为上一次Last-Modified的被值，用于确认摸个资源是否被更改过，没有更改就从缓存中取。
-* Cookie : 已有的cookie
-* Referer : 页面地址上一次个路由， 来源
-* Host : 请求主机的端口
-
-* 响应的header
-* Data: 服务器的日期
-* Last-Modified : 资源最后呗修改的时间
-* Transfer-Encoding : 取值为一般为chunked，出现在Content-Length不能确定的情况下，表示服务器不知道响应版体的数据大小，一般同时还会出现Content-Encoding响应头
-* Set-cookie : 设置cookie
-* Location : 重定向到另一个URL，如输入浏览器就输入baidu.com回车，会自动跳到 [https://www.baidu.com](https://www.baidu.com) ，就是通过这个响应头控制的
-* Server : 后台服务器
-
-
+    

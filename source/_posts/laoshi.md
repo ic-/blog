@@ -1,5 +1,5 @@
 ---
-title: laoshi
+title: ls   
 date: 2017-02-01 13:11:15
 tags:
     - 老师
